@@ -1,0 +1,124 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+  background: #f7f7f7;
+  display: grid;
+  gap: 60px;
+  justify-items: center;
+  margin-top: 60px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0px;
+}
+
+p {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.menu a {
+  background: #ffffff;
+  padding: 15px 30px;
+  border-radius: 4px;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1000%;
+}
+
+.introducao {
+  background: #ffffff;
+  padding: 40px;
+  text-align: right;
+  position: relative;
+  display: grid;
+  gap: 20px;
+  align-content: center;
+  justify-items: end;
+}
+
+.detalhe {
+  width: 60px;
+  height: 4px;
+  background: #e21;
+  /* faz o elemento sair do fluxo do layout dele */
+  /* o absolute não deixa influenciar em  nada nos outros elementos */
+  position: absolute;
+  /* no absolute ele precisa que seu pai tenha um posicionamento diferente, senão ele considera o body */
+  /* aqui, o pai é .introducao então seu posirion precisa mudar para relative */
+  top: 30px;
+  /* metade do width */
+  right: -30px;
+}
+
+.botao {
+  background: #e21;
+  color: #ffffff;
+  padding: 15px 30px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.subtitulo {
+  font-size: 64px;
+  text-transform: uppercase;
+  /* cinza claro sem valor especifico, usa o rgba e coloca tranaparencia no alpha(ultimo valor) */
+  color: rgba(0, 0, 0, 0.2);
+  text-align: right;
+  padding: 60px;
+  /* alinha um intem especifico, fala com um item dentro do grid */
+  align-self: center;
+}
+
+.vantagens {
+  background: #ffffff;
+  padding: 40px;
+}
+
+/* estruturar os icones em um canto e titulo do item em outro e texto embaixo */
+.vantagens-item {
+  /* duas colunas, uma para o icone e otras para o restante */
+  display: grid;
+  /* tamanho auto pega exatamente o tamanho do conteudo e o fr distribui o que restou */
+  grid-template-columns: auto 1fr;
+  /* primeiro valor sera a distancia entre linhas e o 2 será entre colunas  */
+  gap: 10px 20px;
+  padding: 20px;
+}
+/* aqui temos que falar direto com o p para que ele fique na 2 coluna */
+.vantagens-item p {
+  grid-column: 2;
+}
+
+.rodape {
+  background: #ffffff;
+  width: 100%;
+  text-align: center;
+  padding: 40px;
+  /* aqui vai ter que respeitar somente o width */
+  box-sizing: border-box;
+}
