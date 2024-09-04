@@ -3,9 +3,9 @@ body {
   margin: 0px;
   background: #f7f7f7;
   display: grid;
-  gap: 60px;
+  gap: 3.75rem;
   justify-items: center;
-  margin-top: 60px;
+  margin-top: 3.75rem;
 }
 
 img {
@@ -13,8 +13,15 @@ img {
   display: block;
 }
 
+/* não esquecer de fazer a limpeza nas caracteristicas "padrão" das tags utilizadas */
 a {
   text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 p,
@@ -25,8 +32,15 @@ h3 {
 }
 
 p {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.3;
+}
+
+/* o header é um elemento de bloco, sendo necess´rio colocar ele em grid neste caso  */
+.header {
+  display: grid;
+  justify-items: center;
+  gap: 60px;
 }
 
 .menu {
@@ -36,12 +50,20 @@ p {
   justify-content: center;
 }
 
+/* o elemento a por padrão é inline, sendo necessário colocar o display block para que ele consigar pegar o padding certinho */
 .menu a {
+  display: block;
   background: #ffffff;
-  padding: 15px 30px;
+  padding: 1rem 2rem;
   border-radius: 4px;
   color: #000000;
   text-transform: uppercase;
+  /* essa borda transparente serve para quando o hover for aplicado a pagina não pule */
+  border: 2px solid transparent;
+}
+
+.menu a:hover {
+  border-color: #e21;
 }
 
 .conteudo {
@@ -52,51 +74,67 @@ p {
 
 .introducao {
   background: #ffffff;
-  padding: 40px;
+  padding: 2.5rem;
   text-align: right;
   position: relative;
   display: grid;
-  gap: 20px;
+  gap: 1.25rem;
   align-content: center;
   justify-items: end;
 }
+/* quando coloca h1 dentro de section e article ele muda o estilo do h1 faznedo ele diminuir um pouco
+aqui a gente tem que refazer o estilo do h1 */
+.introducao h1 {
+  font-size: 2rem;
+}
 
-.detalhe {
-  width: 60px;
+.introducao::before {
+  content: "";
+  width: 3.75rem;
   height: 4px;
-  background: #e21;
-  /* faz o elemento sair do fluxo do layout dele */
-  /* o absolute não deixa influenciar em  nada nos outros elementos */
+  background-color: #e21;
   position: absolute;
-  /* no absolute ele precisa que seu pai tenha um posicionamento diferente, senão ele considera o body */
-  /* aqui, o pai é .introducao então seu posirion precisa mudar para relative */
   top: 30px;
-  /* metade do width */
   right: -30px;
+}
+
+/* aqui o codigo vai ajustar a responsividade da imagem da bicicleta*/
+.introducao-cover img {
+  object-fit: cover;
+  height: 100%;
 }
 
 .botao {
   background: #e21;
   color: #ffffff;
-  padding: 15px 30px;
+  padding: 1rem 2rem;
   border-radius: 4px;
   text-transform: uppercase;
 }
 
+.botao:hover {
+  background-color: #900;
+}
+
 .subtitulo {
-  font-size: 64px;
+  font-size: 4rem;
   text-transform: uppercase;
   /* cinza claro sem valor especifico, usa o rgba e coloca tranaparencia no alpha(ultimo valor) */
   color: rgba(0, 0, 0, 0.2);
   text-align: right;
-  padding: 60px;
+  padding: 3.75rem;
   /* alinha um intem especifico, fala com um item dentro do grid */
   align-self: center;
+  background-image: url("./img/onda.svg");
 }
 
 .vantagens {
-  background: #ffffff;
-  padding: 40px;
+  background-color: #ffffff;
+  padding: 2.5rem;
+}
+
+.vantagens-item:hover {
+  border-left: 4px solid #e21;
 }
 
 /* estruturar os icones em um canto e titulo do item em outro e texto embaixo */
@@ -106,19 +144,72 @@ p {
   /* tamanho auto pega exatamente o tamanho do conteudo e o fr distribui o que restou */
   grid-template-columns: auto 1fr;
   /* primeiro valor sera a distancia entre linhas e o 2 será entre colunas  */
-  gap: 10px 20px;
-  padding: 20px;
+  gap: 0.625rem 1.25rem;
+  padding: 1.25rem;
 }
 /* aqui temos que falar direto com o p para que ele fique na 2 coluna */
 .vantagens-item p {
   grid-column: 2;
 }
 
+.vantagens-item:nth-child(odd) {
+  background-color: #f7f7f7;
+}
+
 .rodape {
   background: #ffffff;
   width: 100%;
   text-align: center;
-  padding: 40px;
+  padding: 2.5rem;
   /* aqui vai ter que respeitar somente o width */
   box-sizing: border-box;
+}
+
+/* para saber qual breakpont utilizar é só testar onde exatamente o site começa a quebrar no f12, ou onde ele começa a ficar estranho */
+/* criar breakpoints de cada elemento que quebra, podendo criar classes que falam somente com aquele elemento que não deu certo no tamanho testado, o elemento que não quebra podemos deixar separado */
+/* aqui foi necessário criar uma classe somente para ventagens no breakpoint 1000px  */
+@media (max-width: 1000px) {
+  .conteudo-vantagem {
+    grid-template-columns: 1fr;
+  }
+  .subtitulo {
+    text-align: center;
+  }
+}
+
+/* outro brealpoint que foi necessario criar a partir da observação  */
+/* neste breakpoint vamos dimibuir os gaps  */
+@media (max-width: 600px) {
+  body {
+    gap: 30px;
+    margin-top: 20px;
+  }
+  .header {
+    gap: 30px;
+  }
+  .conteudo {
+    grid-template-columns: 1fr;
+  }
+  /* aqui vamos alinhar o texto da introdução
+  observar o compartamento dos textos do elemento no inicio do codigo e ir alterando */
+  .introducao {
+    text-align: left;
+    justify-items: start;
+  }
+  /* aqui vamos ter que tirar o detalhe vermelho (o before) para não gerar scroll, não estourar  */
+  .introducao::before {
+    display: none;
+  }
+  .subtitulo {
+    font-size: 3rem;
+  }
+}
+
+@media (max-widht: 400px) {
+  .subtitulo {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
 }
