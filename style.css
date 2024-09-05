@@ -1,11 +1,31 @@
+:root {
+  --cor-primaria: #e21;
+  --cor-primaria-escura: #900;
+  --fundo-1: #f7f7f7;
+  --fundo-2: #ffffff;
+  --texto: #000000;
+  --onda: url("./img/onda-clara.svg");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo-1: #111111;
+    --fundo-2: #000000;
+    --texto: #ffffff;
+    --cor-subtitulo: rgba(255, 255, 255, 0.2);
+    --onda: url("./img/onda-escura.svg");
+  }
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px;
-  background: #f7f7f7;
+  background: var(--fundo-1);
   display: grid;
   gap: 3.75rem;
   justify-items: center;
   margin-top: 3.75rem;
+  color: var(--texto);
 }
 
 img {
@@ -53,17 +73,17 @@ p {
 /* o elemento a por padrão é inline, sendo necessário colocar o display block para que ele consigar pegar o padding certinho */
 .menu a {
   display: block;
-  background: #ffffff;
+  background: var(--fundo-2);
   padding: 1rem 2rem;
   border-radius: 4px;
-  color: #000000;
+  color: var(--texto);
   text-transform: uppercase;
   /* essa borda transparente serve para quando o hover for aplicado a pagina não pule */
   border: 2px solid transparent;
 }
 
 .menu a:hover {
-  border-color: #e21;
+  border-color: var(--cor-primaria);
 }
 
 .conteudo {
@@ -73,7 +93,7 @@ p {
 }
 
 .introducao {
-  background: #ffffff;
+  background: var(--fundo-2);
   padding: 2.5rem;
   text-align: right;
   position: relative;
@@ -92,7 +112,7 @@ aqui a gente tem que refazer o estilo do h1 */
   content: "";
   width: 3.75rem;
   height: 4px;
-  background-color: #e21;
+  background-color: var(--cor-primaria);
   position: absolute;
   top: 30px;
   right: -30px;
@@ -105,7 +125,7 @@ aqui a gente tem que refazer o estilo do h1 */
 }
 
 .botao {
-  background: #e21;
+  background: var(--cor-primaria);
   color: #ffffff;
   padding: 1rem 2rem;
   border-radius: 4px;
@@ -113,28 +133,28 @@ aqui a gente tem que refazer o estilo do h1 */
 }
 
 .botao:hover {
-  background-color: #900;
+  background-color: var(--cor-primaria-escura);
 }
 
 .subtitulo {
   font-size: 4rem;
   text-transform: uppercase;
   /* cinza claro sem valor especifico, usa o rgba e coloca tranaparencia no alpha(ultimo valor) */
-  color: rgba(0, 0, 0, 0.2);
+  color: var(--cor-subtitulo);
   text-align: right;
   padding: 3.75rem;
   /* alinha um intem especifico, fala com um item dentro do grid */
   align-self: center;
-  background-image: url("./img/onda.svg");
+  background-image: var(--onda);
 }
 
 .vantagens {
-  background-color: #ffffff;
+  background-color: var(--fundo-2);
   padding: 2.5rem;
 }
 
 .vantagens-item:hover {
-  border-left: 4px solid #e21;
+  border-left: 4px solid var(--cor-primaria);
 }
 
 /* estruturar os icones em um canto e titulo do item em outro e texto embaixo */
@@ -153,11 +173,11 @@ aqui a gente tem que refazer o estilo do h1 */
 }
 
 .vantagens-item:nth-child(odd) {
-  background-color: #f7f7f7;
+  background-color: var(--fundo-1);
 }
 
 .rodape {
-  background: #ffffff;
+  background: var(--fundo-2);
   width: 100%;
   text-align: center;
   padding: 2.5rem;
